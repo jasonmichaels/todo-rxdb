@@ -47,9 +47,9 @@
 
 ul {
     list-style: none;
-    padding   : 0 16px;
-    display   : inline-block;
-    position  : relative;
+    padding: 0 16px;
+    display: inline-block;
+    position: relative;
 }
 
 .none-yet {
