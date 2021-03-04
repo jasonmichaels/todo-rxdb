@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import * as Database from '../Database';
+import { getDbIntance } from '../Database';
 import Box from './Box';
 import './Form.css';
 
@@ -10,7 +10,7 @@ const Form = () => {
 
     const addTodo = useCallback(async (e) => {
         e.preventDefault();
-        const db = await Database.get();
+        const db = await getDbIntance();
 
         await db.todos.insert({ name, id: uuidv4() });
         setName('');

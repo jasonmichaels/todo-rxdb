@@ -56,7 +56,7 @@ const _create = async () => {
     return db;
 };
 
-export const get = () => {
+export const getDbIntance = () => {
     if (!dbPromise)
         dbPromise = _create();
     return dbPromise;

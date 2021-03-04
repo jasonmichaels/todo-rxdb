@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import classnames from 'classnames';
 
-import * as Database from '../Database';
+import { getDbIntance } from '../Database';
 import Box from './Box';
 import { radioButtons } from './helpers';
 import './List.css';
@@ -22,7 +22,7 @@ const List = () => {
     }, []);
 
     const setupSubs = useCallback(async () => {
-        const db = await Database.get();
+        const db = await getDbIntance();
 
         const sub = db.todos.find({
             selector: {},
@@ -40,7 +40,7 @@ const List = () => {
     }, [subs]);
 
     const handleComplete = useCallback(async ({ target: { name, checked }}) => {
-        const db = await Database.get();
+        const db = await getDbIntance();
 
         const query = db.todos.findOne({ selector: { id: name }});
         await query.update({
@@ -51,7 +51,7 @@ const List = () => {
     }, []);
 
     const deleteTodo = useCallback(async todo => {
-        const db = await Database.get();
+        const db = await getDbIntance();
 
         const query = db.todos.find().where('id').eq(todo.id);
         await query.update({
@@ -65,7 +65,7 @@ const List = () => {
         setSelectedFilter(name);
         const newFilters = name === 'all' ? {} : { [name]: 1 };
 
-        const db = await Database.get();
+        const db = await getDbIntance();
         const filteredTodos = await db.todos.find({selector: newFilters}).exec();
         setTodos(filteredTodos);
     }, []);
