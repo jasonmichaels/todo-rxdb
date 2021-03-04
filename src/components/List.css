@@ -39,6 +39,8 @@
 #filters {
     display: flex;
     justify-content: space-between;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #ccc;
 }
 
 #filters .radio *:hover {

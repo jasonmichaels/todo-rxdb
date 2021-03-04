@@ -72,7 +72,6 @@ const List = () => {
 
     return (
         <Box id="list-box">
-            <h3>TODOs</h3>
             {isLoading && <span>Loading...</span>}
             {!isLoading && (
                 <>

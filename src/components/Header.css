@@ -1,0 +1,21 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    margin: 0;
+    padding: 0;
+}
+
+.header ul {
+    padding: 0;
+    margin: 0;
+    width: 25%;
+}
+
+.header ul li {
+    display: flex;
+    justify-content: space-between;
+}
