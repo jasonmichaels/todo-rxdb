@@ -1,0 +1,42 @@
+#insert-box form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#insert-box h3,
+#insert-box input {
+    width: 100%;
+}
+
+#insert-box button:hover, .delete:hover {
+    cursor: pointer;
+    transform: scale(.99);
+}
+
+input {
+    font-size     : 16px;
+    font-weight   : lighter;
+    border        : 0;
+    border-bottom : 1px solid #999;
+    margin-bottom : 20px;
+    padding-bottom: 7px;
+}
+
+input:focus {
+    outline: none;
+}
+
+button {
+    width            : 25%;
+    align-self       : flex-start;
+    background-color : #ffa600;
+    outline          : none;
+    border           : none;
+    color            : white;
+    font-size        : 16px;
+    border-radius    : 4px;
+    padding          : 1.5%;
+    cursor           : pointer;
+    box-shadow       : 0px 3px 1px -2px rgba(54, 54, 54, 0.2), 0px 2px 2px 0px rgba(105, 104, 104, 0.14), 0px 1px 5px 0px rgba(97, 96, 96, 0.12);
+}

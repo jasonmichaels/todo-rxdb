@@ -1,0 +1,58 @@
+#todos-list {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    margin: 6px 0;
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+.checkbox {
+    margin: 0;
+    margin-right: 3%;
+}
+
+.checkbox:hover {
+    cursor: pointer;
+}
+
+.actions {
+  margin-left: auto;
+}
+
+.list-item.removed {
+    background-color: #fddede;
+}
+
+.list-item.completed {
+    background-color: #e4f2d4;
+}
+
+#filters {
+    display: flex;
+    justify-content: space-between;
+}
+
+#filters .radio *:hover {
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+    padding   : 0 16px;
+    display   : inline-block;
+    position  : relative;
+}
+
+.none-yet {
+    text-align: center;
+    display: block;
+}
