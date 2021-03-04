@@ -76,22 +76,31 @@ const List = () => {
                                 removed: todo.removed,
                                 completed: todo.completed || (todo.completed && todo.removed)
                             })}>
-                                <input type="checkbox" className="checkbox" name={todo.id} onChange={handleComplete} checked={todo.completed} />
+                                <input 
+                                    type="checkbox" 
+                                    className="checkbox" 
+                                    name={todo.id} 
+                                    onChange={handleComplete} 
+                                    checked={todo.completed} 
+                                />
                                 <span className="name">
                                     {todo.name}
                                 </span>
                                 <div className="actions">
-                                    <span className={classnames('delete', {
-                                        'fa fa-trash-o': !todo.removed,
-                                        'fa fa-undo': todo.removed
-                                     })} aria-hidden="true" onClick={() => deleteTodo(todo)} />
+                                    <span 
+                                        className={classnames('delete', {
+                                            'fa fa-trash-o': !todo.removed,
+                                            'fa fa-undo': todo.removed
+                                        })} 
+                                        aria-hidden="true" 
+                                        onClick={() => deleteTodo(todo)}
+                                    />
                                 </div>
                             </li>
                         );
                     })}
                 </ul>
-                </>
-            )}
+            </>)}
             {!isLoading && todos.length === 0 && <span className="none-yet">No TODOs Found</span>}
         </Box>
     )
