@@ -30,10 +30,9 @@ const List = () => {
                 { id: 'asc' }
             ]
         }).$.subscribe(todos => {
-            if (!todos) {
-                return;
+            if (todos && Array.isArray(todos)) {
+                setTodos(todos);
             }
-            setTodos(todos);
             setIsLoading(false);
         });
         subs.current = sub;

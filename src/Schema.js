@@ -4,7 +4,7 @@ export const todoSchema = {
     version: 0,
     type: 'object',
     properties: {
-        id: {
+        id: { // maybe change to external_id for API reconciliation?
             type: 'string',
             primary: true
         },
