@@ -21,7 +21,13 @@ const Form = () => {
     return (
         <Box>
             <form onSubmit={addTodo}>
-                <input name="name" type="text" placeholder="Something to do. . ." value={name} onChange={handleChange} />
+                <input 
+                    name="name" 
+                    type="text" 
+                    placeholder="Something to do. . ." 
+                    value={name} 
+                    onChange={handleChange}
+                />
                 <button type="submit">ADD</button>
             </form>
         </Box>
