@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 import { getDbIntance } from '../Database';
 import Box from './Box';
-import { radioButtons } from './helpers';
+import { radioButtons, handleComplete, deleteTodo } from './helpers';
 import './List.css';
 
 const List = () => {
@@ -13,19 +13,15 @@ const List = () => {
     
     const subs = useRef(null);
 
-    useEffect(() => {
-        setupSubs();
-
-        return () => {
-            subs.current = null;
-        }
-    }, []);
-
-    const setupSubs = useCallback(async () => {
+    const setupSubs = useCallback(async (newFilters = {}) => {
         const db = await getDbIntance();
 
+        if (subs.current && 'function' === typeof subs.current.unsubscribe) {
+            subs.current.unsubscribe();
+        }
+
         const sub = db.todos.find({
-            selector: {},
+            selector: newFilters,
             sort: [
                 { id: 'asc' }
             ]
@@ -36,38 +32,23 @@ const List = () => {
             setIsLoading(false);
         });
         subs.current = sub;
-    }, [subs]);
-
-    const handleComplete = useCallback(async ({ target: { name, checked }}) => {
-        const db = await getDbIntance();
-
-        const query = db.todos.findOne({ selector: { id: name }});
-        await query.update({
-            $set: {
-                completed: checked ? 1 : 0
-            }
-        })
     }, []);
 
-    const deleteTodo = useCallback(async todo => {
-        const db = await getDbIntance();
+    useEffect(() => {
+        setupSubs();
 
-        const query = db.todos.find().where('id').eq(todo.id);
-        await query.update({
-            $set: {
-                removed: todo.removed ? 0 : 1
+        return () => {
+            if (subs.current && 'function' === typeof subs.current.unsubscribe) {
+                subs.current.unsubscribe();
             }
-        })
+        }
     }, []);
 
     const handleFilters = useCallback(async ({ target: { name }}) => {
+        setIsLoading(true);
         setSelectedFilter(name);
-        const newFilters = name === 'all' ? {} : { [name]: 1 };
-
-        const db = await getDbIntance();
-        const filteredTodos = await db.todos.find({selector: newFilters}).exec();
-        setTodos(filteredTodos);
-    }, []);
+        setupSubs(name === 'all' ? {} : { [name]: 1 });
+    }, [setupSubs]);
 
     return (
         <Box id="list-box">
